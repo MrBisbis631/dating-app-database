@@ -12,9 +12,7 @@ SELECT
   created_at,
   last_password_update
 FROM
-  users
+  user
 WHERE
   role = 'admin'
-  LEFT JOIN admin ON users.id = admin.user_id
-WHERE
-  users.id = admin.user_id;
+INNER JOIN admin ON user.id = admin.user_id;
