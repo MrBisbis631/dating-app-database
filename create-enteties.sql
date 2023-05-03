@@ -6,7 +6,7 @@ CREATE TABLE user
   role ENUM(ADMIN, MATCH_MAKER, CLIENT_M, CLIENT_F) NOT NULL,
   password_hash VARCHAR2(64 BYTE) NOT NULL,
   password_salt VARCHAR2(64 BYTE) NOT NULL,
-  mail VARCHAR2(50 CHAR) NOT NULL,
+  email VARCHAR2(50 CHAR) NOT NULL,
   phone INT NOT NULL,
   created_at DATE NOT NULL,
   PRIMARY KEY (id),
@@ -127,6 +127,7 @@ CREATE TABLE answerer
   client_id INT NOT NULL,
   question_id INT NOT NULL,
   option_id INT NOT NULL,
+  UNIQUE (client_id, question_id),
   PRIMARY KEY (client_id, question_id, option_id),
   FOREIGN KEY (client_id) REFERENCES client(id),
   FOREIGN KEY (question_id, option_id) REFERENCES answer_option(question_id, option_id)
