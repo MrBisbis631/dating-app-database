@@ -94,21 +94,7 @@ CREATE TABLE personal_diary
   created_at DATE NOT NULL,
   updated_at DATE NOT NULL,
   content VARCHAR2(450 CHAR) NOT NULL,
-  category ENUM(IMPORTANT, INFO, NORMAL) NOT NULL,
-  author_id INT NOT NULL,
-  client_id INT NOT NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY (author_id) REFERENCES match_maker(id),
-  FOREIGN KEY (client_id) REFERENCES client(id)
-);
-
-CREATE TABLE personal_diary
-(
-  id INT NOT NULL,
-  created_at DATE NOT NULL,
-  updated_at DATE NOT NULL,
-  content VARCHAR2(450 CHAR) NOT NULL,
-  category ENUM(IMPORTANT, INFO, NORMAL) NOT NULL,
+  category VARCHAR2 CONSTRAINT category_check CHECK (category IN (IMPORTANT, INFO, NORMAL)),
   author_id INT NOT NULL,
   client_id INT NOT NULL,
   PRIMARY KEY (id),
