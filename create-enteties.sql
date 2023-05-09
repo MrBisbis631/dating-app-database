@@ -114,3 +114,18 @@ CREATE TABLE sherd_by
   FOREIGN KEY (to_mm_id) REFERENCES match_maker(id)
 );
 
+CREATE TABLE match_diary
+(
+  id INT NOT NULL,
+  created_at DATE NOT NULL,
+  updated_at DATE NOT NULL,
+  content VARCHAR2(450 CHAR) NOT NULL,
+  match_diary_category VARCHAR2(15 CHAR) CONSTRAINT match_diary_category_check CHECK (match_diary_category IN ('IMPORTANT', 'INFO', 'NORMAL')),
+  author_id INT NOT NULL,
+  client_m_id INT NOT NULL,
+  client_f_id INT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (author_id) REFERENCES match_maker(id),
+  FOREIGN KEY (client_m_id) REFERENCES client_m(client_id),
+  FOREIGN KEY (client_f_id) REFERENCES client_f(client_id)
+);
