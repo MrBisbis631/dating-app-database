@@ -94,7 +94,7 @@ CREATE TABLE personal_diary
   created_at DATE NOT NULL,
   updated_at DATE NOT NULL,
   content VARCHAR2(450 CHAR) NOT NULL,
-  category VARCHAR2 CONSTRAINT category_check CHECK (category IN (IMPORTANT, INFO, NORMAL)),
+  category VARCHAR2 CONSTRAINT category_check CHECK (category IN ('IMPORTANT', 'INFO', 'NORMAL')),
   author_id INT NOT NULL,
   client_id INT NOT NULL,
   PRIMARY KEY (id),
