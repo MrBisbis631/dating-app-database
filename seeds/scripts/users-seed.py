@@ -1,6 +1,25 @@
 import random
 import string
 
+number_of_records = 8_000
+
+admin_range = range(1, 2000)
+match_macker_range = range(2000, 4000)
+client_m_range = range(4000, 6000)
+client_f_range = range(6000, 8000)
+
+def get_user_role(id):
+  if id in admin_range:
+    return "ADMIN"
+  elif id in match_macker_range:
+    return "MATCH_MACKER"
+  elif id in client_m_range:
+    return "CLIENT_M"
+  elif id in client_f_range:
+    return "CLIENT_F"
+  else:
+    return 'CLIENT_F'
+
 
 def random_string(length):
   return ''.join(random.choice(string.ascii_letters) for _ in range(length))
@@ -19,7 +38,7 @@ def random_user(id):
     "id": id,
     "first_name": random_string(10),
     "last_name": random_string(10),
-    "user_role": random.choice(['ADMIN', 'MATCH_MACKER', 'CLIENT_M', 'CLIENT_F']),
+    "user_role": get_user_role(id),
     "password_hash": "password_hash",
     "password_salt": "password_salt",
     "mail": random_email(),
@@ -49,4 +68,4 @@ def create_user_see_sql_file(records_number, filename="users_seed.sql"):
 
 
 if __name__ == "__main__":
-  create_user_see_sql_file(8_000)
+  create_user_see_sql_file(number_of_records)
