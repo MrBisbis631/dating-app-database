@@ -28,8 +28,7 @@ PRIMARY KEY (id),
 FOREIGN KEY (id) REFERENCES users(id)
 );
 
-CREATE TABLE clients
-(
+CREATE TABLE clients (
   photo_url VARCHAR2(150 CHAR) NOT NULL,
   birthday DATE NOT NULL,
   summery VARCHAR2(250 CHAR) NOT NULL,
